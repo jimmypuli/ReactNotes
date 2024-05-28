@@ -1,4 +1,6 @@
 /* 
+Components are described in PasCal case. 
+
 Components are the foundation of React 
 They represent funcationalities of a program. 
 As the program grows more components are needed. 
