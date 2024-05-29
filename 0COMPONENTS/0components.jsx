@@ -3,9 +3,7 @@ Components are described in PasCal case.
 
 Components are the foundation of React 
 They represent funcationalities of a program. 
-As the program grows more components are needed. 
-
-Components in React begin with a capital letter. 
+As the program grows more components are needed.  
 
 Components can be written in different formats 
 Below are the different ways components can be written. 
