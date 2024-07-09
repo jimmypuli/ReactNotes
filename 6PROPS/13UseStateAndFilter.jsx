@@ -15,7 +15,7 @@ function App() {
   return(
     <div>
       <SearchBar searchEvent = {appHandleSearch}/>
-      <NameDisplay name = {searchedNames}/>
+      <DisplayList namesList = {searchedNames}/> 
     </div>
   );
 }
@@ -29,11 +29,13 @@ const SearchBar = (props) => {
   );
 }
 
-const NameDisplay = (props) =>{
+const DisplayList = ({namesList}) => {
   return(
-    <div>
-      <p>{props.name}</p>
-    </div>
+    <ul>
+      {namesList.map((name) => (
+        <li>{name}</li>
+      ))}
+    </ul>
   ); 
 }
 
