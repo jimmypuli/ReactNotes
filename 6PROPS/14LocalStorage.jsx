@@ -17,7 +17,7 @@ function App() {
 
   return(
     <div>
-      <SearchBar searchEvent = {appHandleSearch}/>
+      <SearchBar searchHist = {searchTerm} searchEvent = {appHandleSearch}/>
       <DisplayList namesList = {searchedNames}/> 
     </div>
   );
@@ -27,7 +27,7 @@ const SearchBar = (props) => {
   return(
     <div>
       <label htmlFor= "search">Search: </label>
-      <input id = "search" type = "text" onChange={props.searchEvent}/> 
+      <input id = "search" type = "text" value = {props.searchHist} onChange={props.searchEvent}/> 
     </div>
   );
 }
