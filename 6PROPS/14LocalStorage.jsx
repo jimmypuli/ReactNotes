@@ -35,8 +35,8 @@ const SearchBar = (props) => {
 const DisplayList = ({namesList}) => {
   return(
     <ul>
-      {namesList.map((name) => (
-        <li>{name}</li>
+      {namesList.map((name, index) => (
+        <li key = {index}>{name}</li>
       ))}
     </ul>
   ); 
