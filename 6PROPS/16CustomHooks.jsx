@@ -32,10 +32,7 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = useStorageState(
-    'search', 
-    'React'
-  ); 
+  const [searchTerm, setSearchTerm] = useStorageState('search', 'React'); 
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
