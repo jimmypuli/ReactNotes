@@ -1,14 +1,28 @@
 import * as React from 'react'
 
+const myCustomHook = (key, initialState) => {
+    const [value, setValue] = React.useState(
+        localStorage.getItem('key') || initialState
+    );
+
+    React.useEffect(() => {
+        localStorage.setItem(key, value)
+    }, [value, key]);
+
+    return [value, setValue]; 
+}
+
 function App() {
   const names = ["Fido", "Chain", "Link", "Fogell", "Evan", "Seth", "Jackie"];
-  const [searchTerm, setSearchTerm] = React.useState(
-    localStorage.getItem('searchHistory') || ''
-  ); 
+  
+  const [searchTerm, setSearchTerm] = myCustomHook('search', ''); 
+//   const [searchTerm, setSearchTerm] = React.useState(
+//     localStorage.getItem('searchHistory') || ''
+//   ); 
 
-  React.useEffect(() => {
-    localStorage.setItem('searchHistory', searchTerm);
-  }, [searchTerm]);
+//   React.useEffect(() => {
+//     localStorage.setItem('searchHistory', searchTerm);
+//   }, [searchTerm]);
 
   const appHandleSearch = (event) => {
     setSearchTerm(event.target.value); 
