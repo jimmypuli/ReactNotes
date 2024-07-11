@@ -13,7 +13,7 @@ const myCustomHook = (key, initialState) => {
 }
 
 function App() {
-  const names = ["Fido", "Chain", "Link", "Fogell", "Evan", "Seth", "Jackie"];
+  const names = ["Fido", "Chain", "Link", "Fogell", "Evan", "Seth", "Paulie", "Tony"];
   
   const [searchTerm, setSearchTerm] = myCustomHook('search', ''); 
 //   const [searchTerm, setSearchTerm] = React.useState(
