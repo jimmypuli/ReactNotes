@@ -1,5 +1,5 @@
 import * as React from 'react'
-//component composition
+
 const App = () => {
   const stories = [
     {
