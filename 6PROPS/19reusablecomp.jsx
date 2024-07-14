@@ -3,15 +3,16 @@ import * as React from 'react'
 const App = () => {
   return(
     <>
-      <Button/> 
+      <Button label = "Button 1" handleClick = {() => {console.log("Button 1 clicked.")}}/> 
+      <Button label = "Button 2" handleClick = {() => {console.log("Button 2 clicked.")}}/>
     </>
   ); 
 }
 
-const Button = () => {
+const Button = ({label, handleClick}) => {
   return(
     <>
-      <button>Click here!</button>
+      <button onClick = {handleClick}>{label}</button>
     </>
   );
 }
