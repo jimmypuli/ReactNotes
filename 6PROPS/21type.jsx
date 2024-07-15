@@ -23,5 +23,3 @@ const Button = ({type="button", handleClick, children}) => {
 
 
 export default App; 
-
-/* not really relevant unless form is used*/
