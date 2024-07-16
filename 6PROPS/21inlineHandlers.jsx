@@ -43,9 +43,6 @@ const App = () => {
         value={searchTerm}
         onInputChange={handleSearch}
       />
-
-      {/* <Search search = {searchTerm} onSearch={handleSearch}/> */}
-
       <hr /> 
     
       <List list = {searchedStories}/>
