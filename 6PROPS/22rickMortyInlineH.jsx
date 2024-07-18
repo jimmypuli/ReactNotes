@@ -77,4 +77,4 @@ const Item = ({character, removeItem}) => {
   ); 
 }
 
-export default App; 
+export default App; //note
