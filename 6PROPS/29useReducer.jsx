@@ -19,6 +19,12 @@ const initialStories = [
   },
 ];
 
+const getAsynchStories = () => 
+new Promise ((resolve) => 
+  setTimeout(
+    () => resolve({data: { stories: initialStories } }), 2000)
+);
+
 
 const App = () => {
   const [searchTerm, setSearchTerm] = React.useState(
@@ -39,12 +45,6 @@ const App = () => {
     })
     .catch(() => setIsError(true)); 
   }, []); 
-
-  const getAsynchStories = () => 
-    new Promise ((resolve) => 
-      setTimeout(
-        () => resolve({data: { stories: initialStories } }), 2000)
-    );
 
   const handleRemoveStory = (item) => {
     const newStories = stories.filter(
