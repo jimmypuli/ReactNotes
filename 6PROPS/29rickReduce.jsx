@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+
 const RickMortyCharacters = [
     {
         Name: "Rick Sanchez",
@@ -32,6 +33,13 @@ const RickMortyCharacters = [
         ID: 4
     }
 ]; 
+
+const getAsynchCharacters = () => 
+new Promise((resolve) => 
+    setTimeout(
+        () => resolve({data: {characters}})
+    )
+);
 
 const App = () => {
   const [charactersList, setCharacters] = React.useState(RickMortyCharacters); 
