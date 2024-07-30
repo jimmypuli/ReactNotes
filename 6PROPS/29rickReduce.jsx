@@ -42,19 +42,25 @@ new Promise((resolve) =>
 );
 
 const charactersReducer = (state, action) => {
-
+    switch(action.type){
+        case 'SET_CHARACTERS':
+            return action.payload; 
+        case 'REMOVE_CHARACTER':
+            return state.filter(
+                (character) => action.payload.ID !== character.ID
+            ); 
+    }
 }; 
 
 
 const App = () => {
   const [charactersList, dispatchedCharacters] = React.useReducer(charactersReducer, []); 
   
-  const handleRemoveItem = (character) => {
-    const newCharacterList = charactersList.filter(
-      (newListItem) => newListItem.ID !== character.ID
-    ); 
-    setCharacters(newCharacterList);
-    console.log(character.ID);
+  const handleRemoveItem = (character) => { 
+      dispatchedCharacters({
+          type: 'REMOVE_CHARACTER',
+          payload: character, 
+      }); 
   }
 
   React.useEffect(() => {
