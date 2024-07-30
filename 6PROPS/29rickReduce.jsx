@@ -37,12 +37,17 @@ const RickMortyCharacters = [
 const getAsynchCharacters = () => 
 new Promise((resolve) => 
     setTimeout(
-        () => resolve({data: {characters}})
+        () => resolve({data: {characters: RickMortyCharacters}}), 2000
     )
 );
 
+const charactersReducer = (state, action) => {
+
+}; 
+
+
 const App = () => {
-  const [charactersList, setCharacters] = React.useState(RickMortyCharacters); 
+  const [charactersList, dispatchedCharacters] = React.useReducer(charactersReducer, []); 
   
   const handleRemoveItem = (character) => {
     const newCharacterList = charactersList.filter(
@@ -51,6 +56,17 @@ const App = () => {
     setCharacters(newCharacterList);
     console.log(character.ID);
   }
+
+  React.useEffect(() => {
+      getAsynchCharacters()
+        .then(result => {
+            dispatchedCharacters({
+                type: 'SET_CHARACTERS', 
+                payload: result.data.characters,
+            }); 
+        }) 
+  }, []); 
+
   return(
     <DisplayList myList={charactersList} removeItem= {handleRemoveItem}/> 
   ); 
