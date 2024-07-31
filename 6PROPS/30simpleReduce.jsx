@@ -1,41 +1,40 @@
-import * as React from 'react'
-
-const sum = 0; 
+import * as React from 'react';
 
 const myReducer = (state, action) => {
-    switch(action.type){
-        case 'INCREASE': 
-            sum += 1; 
-        
-        case 'DECREASE': 
-            sum -= 1; 
-    }
+  switch(action.type){
+      case 'INCREASE': 
+          return state + 1; 
+      
+      case 'DECREASE': 
+          return state - 1; 
+      
+      default:
+          return state;
+  }
 };
 
 const App = () => {
-    const [number, dispactedNumber] = React.useReducer(myReducer, []); 
+    const [number, dispatchedNumber] = React.useReducer(myReducer, 0); 
 
     const handleClick = (event) => {
-        if(event.id == 'INCREASE'){
-            dispactedNumber({
-                type: 'INCREASE',
-                payload: 1, 
+        if(event.target.id === 'INCREASE'){
+            dispatchedNumber({
+                type: 'INCREASE'
             });
-        }else{
-            dispactedNumber({
-                type: 'DECREASE',
-                payload: 1, 
+        } else if(event.target.id === 'DECREASE'){
+            dispatchedNumber({
+                type: 'DECREASE'
             });
         }
     }
+
     return (
         <div>
-            <p> {sum}</p>
+            <p>{number}</p>
             <button id='INCREASE' onClick={handleClick}>Increase</button>
             <button id='DECREASE' onClick={handleClick}>Decrease</button> 
         </div>
     ); 
-
 }
 
-export default App; 
+export default App;
