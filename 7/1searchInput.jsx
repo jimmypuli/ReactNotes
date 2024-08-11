@@ -86,11 +86,6 @@ const App = () => {
     }); 
   };
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    localStorage.setItem('search', event.target.value);
-  }; 
-
   return(  
     <div>
       <h1>My Hacker Stories</h1> 
