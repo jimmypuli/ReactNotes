@@ -98,7 +98,7 @@ const App = () => {
       />
       <button
         type="button"
-        diabled={!searchTerm}
+        disabled={!searchTerm}
         onClick={handleSearchSubmit}
       >
         Submit

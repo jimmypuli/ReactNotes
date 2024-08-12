@@ -1,4 +1,5 @@
-import * as React from 'react'
+import * as React from 'react'; 
+import axios from 'axios'; 
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query='; 
 
@@ -40,6 +41,18 @@ const App = () => {
     localStorage.getItem('search') || ''
   );
 
+  const [url, setUrl] = React.useState(
+    `${API_ENDPOINT}${searchTerm}`
+  ); 
+
+  const handleSearchInput = (event) => {
+    setSearchTerm(event.target.value); 
+  }
+
+  const handleSearchSubmit = () => {
+    setUrl(`${API_ENDPOINT}${searchTerm}`); 
+  }
+
   const [stories, dispatchedStories] = React.useReducer(
     storiesReducer, 
     { data: [], isLoading: false, isError: false }
@@ -50,18 +63,18 @@ const App = () => {
 
       dispatchedStories({type: 'STORIES_FETCH_INIT'}); 
 
-      fetch(`${API_ENDPOINT}${searchTerm}`)
-        .then((response) => response.json())
+      axios
+        .get(url)
         .then(result => {
           dispatchedStories({
             type: 'STORIES_FETCH_SUCCESS', 
-            payload: result.hits, 
+            payload: result.data.hits, 
           });  
         })
       .catch(() => 
         dispatchedStories({type: 'STORIES_FETCH_FAILURE'})
       ); 
-  },[searchTerm]); 
+  },[url]); 
   
   React.useEffect(() => {
     handleFetchStories(); 
@@ -74,11 +87,6 @@ const App = () => {
     }); 
   };
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    localStorage.setItem('search', event.target.value);
-  }; 
-
   return(  
     <div>
       <h1>My Hacker Stories</h1> 
@@ -87,8 +95,15 @@ const App = () => {
         id="search"
         label="Search"
         value={searchTerm}
-        onInputChange={handleSearch}
+        onInputChange={handleSearchInput}
       />
+      <button
+        type="button"
+        disabled={!searchTerm}
+        onClick={handleSearchSubmit}
+      >
+        Submit
+      </button>
       <hr /> 
 
       {stories.isError && <p>Something went wrong... </p>}
