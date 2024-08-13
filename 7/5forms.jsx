@@ -127,6 +127,7 @@ const SearchForm = ({
     <button
         type="button"
         disabled={!searchTerm}
+        onClick={onSearchSubmit}//changed it here
     >
         Submit
     </button>
